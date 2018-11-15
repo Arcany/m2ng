@@ -21,9 +21,10 @@ class Enemy(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
         super().__init__()
+        self.img_file = "./sprites/enemies/blockerMad.png"
 
-        self.image = pygame.Surface([15, 15])
-        self.image.fill(self.randcolor())
+        self.image = pygame.image.load(self.img_file)
+        self.image = pygame.transform.scale(self.image, (15,15))
 
         self.rect = self.image.get_rect()
         self.rect.y = y

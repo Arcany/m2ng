@@ -2,14 +2,6 @@ import pygame
 
 #Defineerime värvid
 BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-YELLOW = (255, 255, 0)
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
-PURPLE = (255, 0, 255)
-
-
 class Player(pygame.sprite.Sprite):
     """ Mängija klass"""
 
@@ -27,8 +19,9 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
 
         # Laius,kõrgus
-        self.image = pygame.Surface([15, 15])
-        self.image.fill(BLACK)
+        self.img_file = "./sprites/player/p3_front.png"
+        self.image = pygame.image.load(self.img_file)
+        self.image = pygame.transform.scale(self.image, (30,30))
 
         self.rect = self.image.get_rect()
         self.rect.y = y

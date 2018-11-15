@@ -17,8 +17,9 @@ class Points(pygame.sprite.Sprite):
         super().__init__()
 
         # Laius,kõrgus
-        self.image = pygame.Surface([10, 10])
-        self.image.fill(self.randcolor())
+        self.img_file = "./sprites/points/coinGold.png"
+        self.image = pygame.image.load(self.img_file)
+        self.image = pygame.transform.scale(self.image, (30,30))
 
         self.rect = self.image.get_rect()
         self.rect.y = y
