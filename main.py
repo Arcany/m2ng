@@ -29,7 +29,7 @@ def main():
  
     # Mängija objekt
     existingsprites = pygame.sprite.Group()
-    player = Player(50, 200)
+    player = Player(0, 200)
     enemy = Enemy(25, 100)
     point = Points(randint(100,650),randint(100,650))
 
@@ -93,7 +93,7 @@ def main():
                     player.changespeed(3, 0)
                 if event.key == pygame.K_UP:
                     if player.jumping_allowed == 1:
-                        player.change_y = -10
+                        player.change_y = -15
                         player.is_jumping = 1
                 if event.key == pygame.K_DOWN:
                     player.changespeed(0, 3)
@@ -236,12 +236,14 @@ def main():
             player.jumping_allowed = 1
         elif player.col == 0:
             player.jumping_allowed = 0
+        """
         #Vaatab, kas mängija põrkas kokku vastasega
         if pygame.sprite.collide_rect(player, enemy) == 1:
             tehtud = True
             labi = True
         else:
             pass
+        """
         #Vaatab, kas mängija sai punkti kätte
         if pygame.sprite.collide_rect(player, point) == 1 and current_room_n == 0:
             existingsprites.remove(point)

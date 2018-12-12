@@ -21,7 +21,7 @@ class Player(pygame.sprite.Sprite):
         # Laius,kõrgus
         self.img_file = "./sprites/player/p3_front.png"
         self.image = pygame.image.load(self.img_file)
-        self.image = pygame.transform.scale(self.image, (50,70))
+        self.image = pygame.transform.scale(self.image, (50,50))
 
         self.rect = self.image.get_rect()
         self.rect.y = y

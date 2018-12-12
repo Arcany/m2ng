@@ -24,12 +24,27 @@ class Room0(Room):
         self.C = "./sprites/tiles/castleCenter.png"
 
         # See on seinade list. Igal kuju [x, y, laius, kõrgus, värv]
-        walls = [[0, 0, 20, 250, self.C],
-                 [0, 350, 20, 250, self.C],
-                 [780, 0, 20, 250, self.C],
-                 [780, 350, 20, 250, self.C],
-                 [20, 0, 760, 20, self.C],
-                 [20, 580, 760, 20, self.C]
+        walls = [[0, 0, 50, 250, self.C],
+                 [0, 350, 50, 250, self.C],
+                 [750, 0, 50, 250, self.C],
+                 [750, 350, 50, 250, self.C],
+                 [50, 0, 700, 50, self.C],
+                 [50, 350, 50, 50, self.C],
+                 
+                 [100, 400, 100, 50, self.C],
+                 [250, 450, 100, 50, self.C],
+                 [400, 400, 100, 50, self.C],
+                 [500, 350, 50, 50, self.C],
+                 [550, 150, 50, 200, self.C],
+                 [350, 300, 100, 50, self.C],
+                 [250, 250, 100, 50, self.C],
+                 [50, 200, 150, 50, self.C],
+                 [50, 150, 50, 50, self.C],
+                 [150, 100, 100, 50, self.C],
+                 [350, 150, 50, 50, self.C],
+                 [450, 100, 50, 50, self.C],
+                 [600, 100, 50, 50, self.C],
+                 [650, 400, 50, 50, self.C]
                  ]
 
         # Käib järjendi läbi, teeb seinad
@@ -47,13 +62,31 @@ class Room1(Room):
         self.C = "./sprites/tiles/castleCenter.png"
 
         # See on seinade list. Igal kuju [x, y, laius, kõrgus, värv]
-        walls = [[0, 0, 20, 250, self.C],
-                 [0, 350, 20, 250, self.C],
-                 [780, 0, 20, 250, self.C],
-                 [780, 350, 20, 250, self.C],
-                 [20, 0, 760, 20, self.C],
-                 [20, 580, 760, 20, self.C],
-                 [390, 50, 20, 500, self.C]
+        walls = [[0, 0, 50, 250, self.C],
+                 [0, 350, 50, 250, self.C],
+                 [750, 0, 50, 250, self.C],
+                 [750, 350, 50, 250, self.C],
+                 [50, 0, 700, 50, self.C],
+                 [50, 350, 50, 50, self.C],
+                 
+                 [50, 350, 100, 50, self.C],
+                 [100, 300, 100, 50, self.C],
+                 [150, 250, 100, 50, self.C],
+                 [200, 200, 50, 50, self.C],
+                 [300, 550, 50, 50, self.C],
+                 [350, 500, 50, 50, self.C],
+                 [400, 450, 50, 50, self.C],
+                 [450, 400, 50, 50, self.C],
+                 [500, 350, 50, 50, self.C],
+                 [550, 300, 50, 50, self.C],
+                 [600, 250, 50, 50, self.C],
+                 [450, 250, 50, 50, self.C],
+                 [400, 200, 50, 50, self.C],
+                 [500, 150, 50, 50, self.C],
+                 [350, 150, 50, 50, self.C],
+                 [300, 100, 50, 350, self.C],
+                 [550, 150, 100, 50, self.C],
+                 [650, 200, 50, 50, self.C]
                  ]
 
         # Käib järjendi läbi, teeb seinad
