@@ -21,7 +21,7 @@ class Room0(Room):
     def __init__(self):
         super().__init__()
         # Teeb seinad
-        self.C = ".\sprites\tiles\castleCenter.png"
+        self.C = "./sprites/tiles/castleCenter.png"
 
         # See on seinade list. Igal kuju [x, y, laius, kõrgus, värv]
         walls = [[0, 0, 20, 250, self.C],
@@ -44,7 +44,7 @@ class Room1(Room):
     def __init__(self):
         super().__init__()
         # Teeb seinad
-        self.C = ".\sprites\tiles\castleCenter.png"
+        self.C = "./sprites/tiles/castleCenter.png"
 
         # See on seinade list. Igal kuju [x, y, laius, kõrgus, värv]
         walls = [[0, 0, 20, 250, self.C],
@@ -67,7 +67,7 @@ class Room2(Room):
 
     def __init__(self):
         super().__init__()
-        self.C = ".\sprites\tiles\castleCenter.png"
+        self.C = "./sprites/tiles/castleCenter.png"
         walls = [[0, 0, 20, 250, self.C],
                  [0, 350, 20, 250, self.C],
                  [780, 0, 20, 250, self.C],
@@ -88,7 +88,7 @@ class Room3(Room):
 
     def __init__(self):
         super().__init__()
-        self.C = ".\sprites\tiles\castleCenter.png"
+        self.C = "./sprites/tiles/castleCenter.png"
 
         walls = [[0, 0, 20, 250, self.C],
                  [0, 350, 20, 250, self.C],

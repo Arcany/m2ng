@@ -92,7 +92,9 @@ def main():
                 if event.key == pygame.K_RIGHT:
                     player.changespeed(3, 0)
                 if event.key == pygame.K_UP:
-                    player.changespeed(0, -3)
+                    if player.jumping_allowed == 1:
+                        player.change_y = -10
+                        player.is_jumping = 1
                 if event.key == pygame.K_DOWN:
                     player.changespeed(0, 3)
  
@@ -102,7 +104,7 @@ def main():
                 if event.key == pygame.K_RIGHT:
                     player.changespeed(-3, 0)
                 if event.key == pygame.K_UP:
-                    player.changespeed(0, 3)
+                    pass
                 if event.key == pygame.K_DOWN:
                     player.changespeed(0, -3)
  
@@ -231,9 +233,9 @@ def main():
         clock.tick(60)
         #Vaatab, kas mängija põrkas kokku seinaga
         if player.col == 1:
-            tehtud = True
-            labi = True
-
+            player.jumping_allowed = 1
+        elif player.col == 0:
+            player.jumping_allowed = 0
         #Vaatab, kas mängija põrkas kokku vastasega
         if pygame.sprite.collide_rect(player, enemy) == 1:
             tehtud = True

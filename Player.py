@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
 
     # Kiirus
     change_x = 0
-    change_y = 0
+    change_y = 5
 
     # Punktid
     points = 0
@@ -21,11 +21,14 @@ class Player(pygame.sprite.Sprite):
         # Laius,kõrgus
         self.img_file = "./sprites/player/p3_front.png"
         self.image = pygame.image.load(self.img_file)
-        self.image = pygame.transform.scale(self.image, (30,30))
+        self.image = pygame.transform.scale(self.image, (50,70))
 
         self.rect = self.image.get_rect()
         self.rect.y = y
         self.rect.x = x
+        self.jumping_allowed = 0
+        self.col = 0
+        self.is_jumping = 0
 
     def collision(self):
         if self.col == 0:
@@ -48,18 +51,18 @@ class Player(pygame.sprite.Sprite):
             # Ei muuda asukohta
             if self.change_x > 0:
                 self.rect.right = block.rect.left
-                self.collision()
 
             else:
                 # Ei muuda asukohta
                 self.rect.left = block.rect.right
-                self.collision()
 
         # Liigub üles/alla
         self.rect.y += self.change_y
 
         # Kas me tabasime seina?
         wall_collision_list = pygame.sprite.spritecollide(self, walls, False)
+        if wall_collision_list == []:
+            self.col = 0
         for block in wall_collision_list:
 
             # Ei muuda asukohta
@@ -69,10 +72,17 @@ class Player(pygame.sprite.Sprite):
 
 
             else:
-                # Ei muuda asukohta
                 self.rect.top = block.rect.bottom
                 self.collision()
+        if self.is_jumping == 1 and self.change_y <= 5:
+            pass
+        else:
+            self.is_jumping = 0
+        if self.is_jumping == 1:
+            self.change_y += 1
 
-    col = 0
+
+
+
 
 
