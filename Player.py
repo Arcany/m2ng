@@ -46,8 +46,6 @@ class Player(pygame.sprite.Sprite):
         self.change_y += y
 
     def move(self, walls):
-        print(self.rect.x)
-        print(self.rect.y )
         """ Liigutab mängijat"""
 
         # Liigub paremale/vasakule
