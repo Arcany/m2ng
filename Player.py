@@ -27,7 +27,7 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.img_move.append(pygame.image.load("./sprites/player/PNG/p3_walk" + str(queue) + ".png"))
         self.image = pygame.image.load(self.img_file)
-        self.image = pygame.transform.scale(self.image, (50,50))
+        self.image = pygame.transform.scale(self.image, (48,48))
 
         self.rect = self.image.get_rect()
         self.rect.y = y
@@ -88,12 +88,12 @@ class Player(pygame.sprite.Sprite):
             self.change_y += 1
         if self.change_x > 0:
             for movement in self.img_move:
-                self.image = pygame.transform.scale(movement, (50,50))
+                self.image = pygame.transform.scale(movement, (48,48))
         elif self.change_x < 0:
             for movement in self.img_move:
-                self.image = pygame.transform.flip(pygame.transform.scale(movement,(50,50)),True,False)
+                self.image = pygame.transform.flip(pygame.transform.scale(movement,(48,48)),True,False)
         elif self.change_x == 0:
-            self.image = pygame.transform.scale(pygame.image.load(self.img_file),(50,50))
+            self.image = pygame.transform.scale(pygame.image.load(self.img_file),(48,48))
 
 
 
