@@ -20,6 +20,12 @@ class Player(pygame.sprite.Sprite):
 
         # Laius,kõrgus
         self.img_file = "./sprites/player/p3_front.png"
+        self.img_move = []
+        for queue in range(1,12):
+            if queue < 10:
+                self.img_move.append(pygame.image.load("./sprites/player/PNG/p3_walk0"+str(queue)+".png"))
+            else:
+                self.img_move.append(pygame.image.load("./sprites/player/PNG/p3_walk" + str(queue) + ".png"))
         self.image = pygame.image.load(self.img_file)
         self.image = pygame.transform.scale(self.image, (50,50))
 
@@ -40,6 +46,8 @@ class Player(pygame.sprite.Sprite):
         self.change_y += y
 
     def move(self, walls):
+        print(self.rect.x)
+        print(self.rect.y )
         """ Liigutab mängijat"""
 
         # Liigub paremale/vasakule
@@ -80,6 +88,14 @@ class Player(pygame.sprite.Sprite):
             self.is_jumping = 0
         if self.is_jumping == 1:
             self.change_y += 1
+        if self.change_x > 0:
+            for movement in self.img_move:
+                self.image = pygame.transform.scale(movement, (50,50))
+        elif self.change_x < 0:
+            for movement in self.img_move:
+                self.image = pygame.transform.flip(pygame.transform.scale(movement,(50,50)),True,False)
+        elif self.change_x == 0:
+            self.image = pygame.transform.scale(pygame.image.load(self.img_file),(50,50))
 
 
 

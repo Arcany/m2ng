@@ -13,7 +13,7 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 PURPLE = (255, 0, 255)
 
- 
+clock = pygame.time.Clock()
 
 def main():
     """ Peaprogramm """
@@ -29,13 +29,14 @@ def main():
  
     # Mängija objekt
     existingsprites = pygame.sprite.Group()
-    player = Player(0, 200)
-    enemy = Enemy(25, 100)
+    player = Player(0, 250)
+
     point = Points(randint(100,650),randint(100,650))
+    clock.tick(60)
 
 
     existingsprites.add(player)
-    existingsprites.add(enemy)
+
     existingsprites.add(point)
 
     #Ruumide tegemine
@@ -51,8 +52,14 @@ def main():
 
     current_room_n = 0
     current_room = rooms[current_room_n]
+    if current_room_n == 0: #vastased erinevates ruumides
+        enemy = Enemy(300, 450, 50)
+        existingsprites.add(enemy)
+        enemy2 = Enemy(400, 300, 50)
+        existingsprites.add(enemy2)
+
  
-    clock = pygame.time.Clock()
+
  
     tehtud = True
     algus = True
@@ -74,7 +81,7 @@ def main():
         screen.blit(text,(400 - text.get_width() // 2, 300 - text.get_height() // 2))
         screen.blit(text2,(600 - text.get_width() // 2, 500 - text.get_height() // 2))
         pygame.display.flip()
-        clock.tick(60)
+
 
     #Mäng ise
     while not tehtud:
@@ -93,7 +100,7 @@ def main():
                     player.changespeed(3, 0)
                 if event.key == pygame.K_UP:
                     if player.jumping_allowed == 1:
-                        player.change_y = -15
+                        player.change_y = -10
                         player.is_jumping = 1
                 if event.key == pygame.K_DOWN:
                     player.changespeed(0, 3)
@@ -111,7 +118,9 @@ def main():
         # --- Mängu loogika ---
         # Paneb mängija ja vastase liikuma ning kontrollib ruumide vahetust
         player.move(current_room.wall_list)
-        enemy.move(current_room.wall_list)
+        enemy.move()
+        enemy2.move()
+
         if player.rect.x < -15:
             if current_room_n == 0:
                 current_room_n = 3
@@ -121,10 +130,10 @@ def main():
                 enemy = Enemy(randint(200,500),randint(200,500))
                 existingsprites.add(enemy)
                 existingsprites.remove(point)
-                point = Points(randint(200, 500), randint(200, 500))
+                point = Points(randint(200, 500), randint(200, 400))
                 while point.check(current_room.wall_list) == 1:
                     existingsprites.remove(point)
-                    point = Points(randint(200, 500), randint(200, 500))
+                    point = Points(randint(200, 500), randint(200, 400))
                 existingsprites.add(point)
             elif current_room_n == 2:
                 current_room_n = 1
@@ -134,10 +143,10 @@ def main():
                 enemy = Enemy(randint(200,500), randint(200,500))
                 existingsprites.add(enemy)
                 existingsprites.remove(point)
-                point = Points(randint(200, 500), randint(200, 500))
+                point = Points(randint(200, 500), randint(200, 400))
                 while point.check(current_room.wall_list) == 1:
                     existingsprites.remove(point)
-                    point = Points(randint(200, 500), randint(200, 500))
+                    point = Points(randint(200, 500), randint(200, 400))
                 existingsprites.add(point)
             elif current_room_n == 3:
                 current_room_n = 2
@@ -147,10 +156,10 @@ def main():
                 enemy = Enemy(randint(200, 500), randint(200, 500))
                 existingsprites.add(enemy)
                 existingsprites.remove(point)
-                point = Points(randint(200,500), randint(200,500))
+                point = Points(randint(200,500), randint(200,400))
                 while point.check(current_room.wall_list) == 1:
                     existingsprites.remove(point)
-                    point = Points(randint(200, 500), randint(200, 500))
+                    point = Points(randint(200, 500), randint(200, 400))
                 existingsprites.add(point)
             else:
                 current_room_n = 0
@@ -160,10 +169,10 @@ def main():
                 enemy = Enemy(randint(200, 500), randint(200, 500))
                 existingsprites.add(enemy)
                 existingsprites.remove(point)
-                point = Points(randint(200, 500), randint(200, 500))
+                point = Points(randint(200, 500), randint(200, 400))
                 while point.check(current_room.wall_list) == 1:
                     existingsprites.remove(point)
-                    point = Points(randint(200, 500), randint(200, 500))
+                    point = Points(randint(200, 500), randint(200, 400))
                 existingsprites.add(point)
 
         if player.rect.x > 801:
@@ -175,10 +184,10 @@ def main():
                 enemy = Enemy(randint(350, 650), randint(350, 650))
                 existingsprites.add(enemy)
                 existingsprites.remove(point)
-                point = Points(randint(200, 500), randint(200, 500))
+                point = Points(randint(200, 500), randint(200, 400))
                 while point.check(current_room.wall_list) == 1:
                     existingsprites.remove(point)
-                    point = Points(randint(200, 500), randint(200, 500))
+                    point = Points(randint(200, 500), randint(200, 400))
                 existingsprites.add(point)
             elif current_room_n == 1:
                 current_room_n = 2
@@ -188,10 +197,10 @@ def main():
                 enemy = Enemy(randint(350, 650), randint(350, 650))
                 existingsprites.add(enemy)
                 existingsprites.remove(point)
-                point = Points(randint(200, 500), randint(200, 500))
+                point = Points(randint(200, 500), randint(200, 400))
                 while point.check(current_room.wall_list) == 1:
                     existingsprites.remove(point)
-                    point = Points(randint(200, 500), randint(200, 500))
+                    point = Points(randint(200, 500), randint(200, 400))
                 existingsprites.add(point)
             elif current_room_n == 2:
                 current_room_n = 3
@@ -201,10 +210,10 @@ def main():
                 enemy = Enemy(randint(350, 650), randint(350, 650))
                 existingsprites.add(enemy)
                 existingsprites.remove(point)
-                point = Points(randint(200, 500), randint(200, 500))
+                point = Points(randint(200, 500), randint(200, 400))
                 while point.check(current_room.wall_list) == 1:
                     existingsprites.remove(point)
-                    point = Points(randint(200, 500), randint(200, 500))
+                    point = Points(randint(200, 500), randint(200, 400))
                 existingsprites.add(point)
             else:
                 current_room_n = 0
@@ -214,12 +223,11 @@ def main():
                 enemy = Enemy(randint(350, 650), randint(350, 650))
                 existingsprites.add(enemy)
                 existingsprites.remove(point)
-                point = Points(randint(200, 500), randint(200, 500))
+                point = Points(randint(200, 500), randint(200, 400))
                 while point.check(current_room.wall_list) == 1:
                     existingsprites.remove(point)
-                    point = Points(randint(200, 500), randint(200, 500))
+                    point = Points(randint(200, 500), randint(200, 400))
                 existingsprites.add(point)
- 
         # --- Kõige joonistamine ---
         screen.fill(WHITE)
  
@@ -232,50 +240,49 @@ def main():
  
         clock.tick(60)
         #Vaatab, kas mängija põrkas kokku seinaga
+        if player.rect.y >= 600:
+            tehtud = True
+            labi = True
         if player.col == 1:
             player.jumping_allowed = 1
         elif player.col == 0:
             player.jumping_allowed = 0
-        """
         #Vaatab, kas mängija põrkas kokku vastasega
         if pygame.sprite.collide_rect(player, enemy) == 1:
             tehtud = True
             labi = True
         else:
             pass
-        """
         #Vaatab, kas mängija sai punkti kätte
         if pygame.sprite.collide_rect(player, point) == 1 and current_room_n == 0:
             existingsprites.remove(point)
-            point = Points(randint(100, 300), randint(100, 300))
+            point = Points(randint(100, 300), randint(100, 400))
             Player.points += 10
-            enemy.extra += 1
 
         elif pygame.sprite.collide_rect(player, point) == 1 and current_room_n == 1:
             existingsprites.remove(point)
-            point = Points(randint(100, 300), randint(100, 300))
+            point = Points(randint(100, 300), randint(100, 400))
             Player.points += 20
             existingsprites.add(point)
-            enemy.extra += 0.5
+
         elif pygame.sprite.collide_rect(player, point) == 1 and current_room_n == 2:
             existingsprites.remove(point)
-            point = Points(randint(100, 300), randint(100, 300))
+            point = Points(randint(100, 300), randint(100, 400))
             Player.points += 30
             existingsprites.add(point)
-            enemy.extra += 0.25
+
         elif pygame.sprite.collide_rect(player, point) == 1 and current_room_n == 3:
             existingsprites.remove(point)
-            point = Points(randint(100, 300), randint(100, 300))
+            point = Points(randint(100, 300), randint(100, 400))
             Player.points += 40
             existingsprites.add(point)
-            enemy.extra += 0.1
+
         while point.check(current_room.wall_list) == 1:
             existingsprites.remove(point)
-            point = Points(randint(200, 500), randint(200, 500))
+            point = Points(randint(200, 500), randint(200, 400))
             existingsprites.add(point)
 
 
-        enemy.nurk(player.rect.x,player.rect.y)
     #Lõpp ekraan
     while labi:
         for event in pygame.event.get():

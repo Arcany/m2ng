@@ -23,7 +23,7 @@ class Room0(Room):
         # Teeb seinad
         self.C = "./sprites/tiles/castleCenter.png"
 
-        # See on seinade list. Igal kuju [x, y, laius, kõrgus, värv]
+        # See on seinade list. Igal kuju [x, y, laius, kõrgus, img]
         walls = [[0, 0, 50, 250, self.C],
                  [0, 350, 50, 250, self.C],
                  [750, 0, 50, 250, self.C],

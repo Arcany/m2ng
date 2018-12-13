@@ -13,13 +13,11 @@ PURPLE = (255, 0, 255)
 
 class Enemy(pygame.sprite.Sprite):
     # Kiirus
-    change_x = 0
-    change_y = 0
+    change_x = 2
+    change_y = 1
 
-    #Trahvi kiirus(Ehk, mida kauem on mängija ruumis seda kiiremaks läheb vastane)
-    extra = 0
 
-    def __init__(self, x, y):
+    def __init__(self, x, y,length):
         super().__init__()
         self.img_file = "./sprites/enemies/blockerMad.png"
 
@@ -27,32 +25,24 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (15,15))
 
         self.rect = self.image.get_rect()
-        self.rect.y = y
+        self.rect.y = y-15
         self.rect.x = x
+        self.length = length
+        self.algus_x = x
+        self.direction = choice(["right", "left"])
 
     def randcolor(self):
         return choice([YELLOW, BLUE, GREEN, RED, PURPLE])
 
-    def move(self, enemy):
+    def move(self):
+
         """ Liigutab vastast"""
-
         # Liigub paremale/vasakule
-        self.rect.x += self.change_x
-        self.rect.y += self.change_y
-
-    def nurk(self, x, y):
-        x1 = self.rect.x - x
-        y1 = self.rect.y - y
-
-        if x1 <= 0 and y1 >= 0:
-            self.change_x = 1.5 + self.extra
-            self.change_y = -1.5 - self.extra
-        elif x1 <= 0 and y1 <= 0:
-            self.change_x = 1.5 + self.extra
-            self.change_y = 1.5 + self.extra
-        elif x1 >= 0 and y1 >= 0:
-            self.change_x = -1.5 - self.extra
-            self.change_y = -1.5 - self.extra
-        elif x1 >= 0 and y1 <= 0:
-            self.change_x = -1.5 - self.extra
-            self.change_y = 1.5 + self.extra
+        if self.algus_x+self.length > self.rect.x+15 and self.direction == "right":
+            self.rect.x += self.change_x
+        elif self.algus_x+self.length <= self.rect.x+15 and self.direction == "right":
+            self.direction = "left"
+        elif self.algus_x - self.length < self.rect.x-5 and self.direction == "left":
+            self.rect.x -= self.change_x
+        else:
+            self.direction = "right"
